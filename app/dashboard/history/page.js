@@ -13,6 +13,7 @@ const dummy =[1,2,3,4];
                     rate={12.5} 
                     duration={30} 
                     date="13 JUL 2024" 
+                    
                     type="Personal" 
                      key= {loan}/>)}
                     
