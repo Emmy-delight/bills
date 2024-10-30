@@ -36,7 +36,7 @@ export default function UpdateProfile () {
                 id="firstName"
                 label="first name"
                 variant="outlined"
-                value={values.firstName}
+                value={firstName}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="e.g Emmanuel"
