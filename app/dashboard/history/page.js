@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { getDocs,collection,orderBy } from "firebase/firestore";
 import {HistoryTab} from "@/components/HistoryTab";
@@ -6,7 +7,7 @@ import { db } from "@/config/firebase.config";
  export default function History ()  {
     const [loans,setLoans] = React.useState([]);
     React.useEffect(() => {
-        const handleFetchloans = async () => {
+        const handleFetchLoans = async () => {
             const q = collection(db,"loans");
             const onSnap =await getDocs(q);
 
@@ -20,6 +21,7 @@ import { db } from "@/config/firebase.config";
                 setLoans(compileResults)
             })
         } 
+        handleFetchLoans()
     },[])
      console.log(loans)
 
