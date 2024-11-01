@@ -23,7 +23,7 @@ import { db } from "@/config/firebase.config";
         } 
         handleFetchLoans()
     },[])
-     console.log(loans)
+     
 
     return (
         <main className="min-h-screen flex justify-center items-center bg-gradient-to-b from-sky-100 via-sky-200 to-blue-300">
@@ -31,6 +31,7 @@ import { db } from "@/config/firebase.config";
                 <h1 className="text-xl text-gray-800 mb-4">My loan history </h1>
                 <div className="flex flex-col gap-4">
                     {loans.map(loan => <HistoryTab 
+                    docId={loan.id}
                     amount={loan.data.amount} 
                     rate={loan.data.rate} 
                     duration={loan.data.duration} 
