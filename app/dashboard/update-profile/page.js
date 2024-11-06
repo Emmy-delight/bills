@@ -1,4 +1,4 @@
-"use client"
+ "use client"
 import { useFormik}  from "formik";
 import * as yup from "yup";
 import {TextField, Button} from "@mui/material"
@@ -15,7 +15,7 @@ export default function UpdateProfile () {
     const {handleSubmit,handleChange, handleBlur,errors,touched,values } = useFormik({
         initialValues: {firstName:"",lastName:"",phone:"",address:""},
         onSubmit: () => {
-            console.log("form was submitted")
+         //   console.log("form was submitted")
         },
         validationSchema: schema
     })
