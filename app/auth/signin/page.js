@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 export default function Auth () {
     const {data:session} = useSession();
-    // console.log(session);
+     console.log(session);
     const router =useRouter();
 
     React.useEffect(() => {
@@ -31,6 +31,7 @@ export default function Auth () {
                 <form 
                 action={ () => {
                     signIn("google")
+                    signIn("twitter")
                 }}
                 className="mb-2">
                     <button type="submit" className="w-full h-[3.2em] flex justify-center items-center gap-2 border-b-2 border-red-500 bg-black rounded-md">
