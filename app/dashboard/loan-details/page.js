@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { AppContext } from "@/config/context.config";
 import { db } from "@/config/firebase.config";
 import { doc, getDoc } from "firebase/firestore";
@@ -12,12 +13,19 @@ const schema = yup.object().shape({
   amount: yup.number().required().min(1),
 });
 export default function History() {
-    const {loanDocId} = React.useContext(AppContext);
+  const { loanDocId } = React.useContext(AppContext);
   const [loan, setLoan] = React.useState(null);
   const [totalOffsets, setTotalOffsets] = React.useState(0);
 
-  console.log("++", loanDocId);
+  const router = useRouter();
 
+  React.useEffect(() => {
+    if (loanDocId == null) {
+      router.push("/dashboard/history");
+    }
+  }, []);
+
+  //   console.log("++", loanDocId);
 
   React.useEffect(() => {
     const handleDocFetch = async () => {
@@ -29,7 +37,7 @@ export default function History() {
         alert("Invalid request ID");
       }
     };
-    
+
     handleDocFetch();
   }, []);
   const { handleSubmit, handleChange, touched, errors, values } = useFormik({

@@ -1,4 +1,4 @@
-import Twitter from "next-auth/providers/twitter"
+import Twitter from "next-auth/providers/twitter";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
@@ -10,21 +10,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
-  ],
-    providers: [Twitter({
-       clientId: process.env.AUTH_TWITTER_ID,
-       clientSecret: process.env.AUTH_TWITTER_SECRET,
+    Twitter({
+      clientId: process.env.AUTH_TWITTER_ID,
+      clientSecret: process.env.AUTH_TWITTER_SECRET,
     }),
-
-    ],
-
-   adapter: FirestoreAdapter({
+  ],
+  adapter: FirestoreAdapter({
     credential: cert({
       projectId: process.env.AUTH_FIREBASE_PROJECT_ID,
       clientEmail: process.env.AUTH_FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.AUTH_FIREBASE_PRIVATE_KEY
-        ? process.env.AUTH_FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n")
-        : undefined,
+      privateKey: process.env.AUTH_FIREBASE_PRIVATE_KEY ? process.env.AUTH_FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"): undefined,
     }),
   }),
   pages: {
@@ -32,7 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     session: async ({ session }) => {
-      return session
+      return session;
     },
   },
 });

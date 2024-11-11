@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 export function HistoryTab({ docId, amount, rate, duration, date, type }) {
   const { setLoanDocId } = useContext(AppContext);
-  const router = useRouter
+  const router = useRouter();
   return (
     <div
       onClick={() => {
