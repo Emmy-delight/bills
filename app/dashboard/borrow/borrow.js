@@ -1,12 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import { TextField } from "@mui/material";
+import { duration, TextField } from "@mui/material";
 import { db } from "@/config/firebase.config";
 import { addDoc, collection } from "firebase/firestore";
 import { CircularProgress } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useSession } from "next-auth/react";
 
 const schema = yup.object().shape({
   amount: yup.number().required().min(1000),
@@ -17,19 +16,13 @@ const durations = [
   { id: "30d", days: 30 },
   { id: "90d", days: 90 },
 ];
-export default function Borrow() {
+export function Borrow({userId}) {
   const [clickedRate, setClickedRate] = useState(undefined);
   const [rate, setRate] = useState(0);
   const [payback, setPayback] = useState(0);
   const [days, setDays] = useState(0);
   const [opsProgress, setOpsProgress] = useState(false);
   const { data: session } = useSession();
-
-  // check for user authentication
-
-  //   useEffect (()=> {
-  //     if(!session ?.user)
-  //   })
 
   const { handleSubmit, handleChange, values, touched, errors } = useFormik({
     initialValues: {
@@ -39,8 +32,8 @@ export default function Borrow() {
       setOpsProgress(true);
 
       await addDoc(collection(db, "loans"), {
-        user: session?.user?.id,
-        amount: values.amount,
+        user:userId,
+        amount:values.amount,
         payback: payback,
         rate: rate,
         duration: days,
@@ -146,19 +139,4 @@ export default function Borrow() {
       </div>
     </main>
   );
-"use server";
-import { auth } from "@/auth";
-import AuthorizationCheck from "@/config/authorization-check";
-import { Borrow } from "./borrow";
-
-export default async function Page() {
-  const session = await auth();
-
-  return (
-        <>
-        <AuthorizationCheck/>
-        <Borrow  userId={session?.user.id}/>
-        </>
-  )
-
 }
