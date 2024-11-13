@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { duration, TextField } from "@mui/material";
+import {  TextField } from "@mui/material";
 import { db } from "@/config/firebase.config";
 import { addDoc, collection } from "firebase/firestore";
 import { CircularProgress } from "@mui/material";
@@ -16,13 +16,12 @@ const durations = [
   { id: "30d", days: 30 },
   { id: "90d", days: 90 },
 ];
-export function Borrow({userId}) {
+export function Borrow({ userId }) {
   const [clickedRate, setClickedRate] = useState(undefined);
   const [rate, setRate] = useState(0);
   const [payback, setPayback] = useState(0);
   const [days, setDays] = useState(0);
   const [opsProgress, setOpsProgress] = useState(false);
-  const { data: session } = useSession();
 
   const { handleSubmit, handleChange, values, touched, errors } = useFormik({
     initialValues: {
@@ -33,7 +32,7 @@ export function Borrow({userId}) {
 
       await addDoc(collection(db, "loans"), {
         user:userId,
-        amount:values.amount,
+        amount: values.amount,
         payback: payback,
         rate: rate,
         duration: days,
