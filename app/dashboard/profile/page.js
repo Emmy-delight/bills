@@ -1,10 +1,10 @@
-"use server";
+ "use server"
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import { auth, signOut } from "@/auth";
 import { Button } from "@mui/material";
-import AuthorizationCheck from "@/config/authorization-check";
+import {AuthorizationCheck} from "@/config/authorization-check";
 
 export default async function Profile() {
   const session = await auth();
@@ -50,5 +50,5 @@ export default async function Profile() {
       </div>
     </main>
     </>
-  );
+  )
 }

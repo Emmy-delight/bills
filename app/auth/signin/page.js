@@ -1,17 +1,16 @@
-"use server";
+// "use server"
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { auth, signIn } from "@/auth";
 import { FaGoogle } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-
 export default async function Auth() {
-const session = await auth ();
+  const session = await auth();
 
-if (session) {
-  redirect ("/dashboard/borrow")
-}
+  if (session) {
+    redirect("/dashboard/borrow");
+  }
 
   return (
     <main className=" min-h-[520px] flex justify-center bg-gradient-to-b from-gray-50 to-gray-300 py-8 px-2">
@@ -25,9 +24,9 @@ if (session) {
           {/* Delete this */}
 
           <form
-            action={async () => {
-              "use server"
-             await  signIn("google");
+            action= {async () => {
+              "use server";
+              await signIn("google");
             }}
             className="mb-2"
           >
@@ -40,9 +39,9 @@ if (session) {
             </button>
           </form>
           <form
-            action={ async() => {
-               "use server"
-               await signIn("twitter");
+            action = {async () => {
+              "use server";
+              await signIn("twitter");
             }}
             className="mb-2"
           >

@@ -1,5 +1,5 @@
-import Twitter from "next-auth/providers/twitter";
 import NextAuth from "next-auth";
+import Twitter from "next-auth/providers/twitter";
 import GoogleProvider from "next-auth/providers/google";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { cert } from "firebase-admin/app";

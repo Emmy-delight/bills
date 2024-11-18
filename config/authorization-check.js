@@ -9,6 +9,4 @@ export async function AuthorizationCheck() {
   if (!session?.user) {
     redirect("/auth/signin");
   }
-
-  return <></>;
 }
