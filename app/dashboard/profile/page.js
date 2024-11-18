@@ -33,12 +33,13 @@ export default async function Profile() {
           Customer ID {session?.user?.id}
         </p>
 
-       <form action={async () => {
+       <form className=""
+        action={async () => {
            "use server"
            await signOut()
            redirect("/auth/signin")
        }}>
-       <Button variant="contained" color="error" type ="submit">Log Out</Button>
+       <Button className="w-full" variant="contained" color="error" type ="submit">Log Out</Button>
        </form>
 
         <Link
